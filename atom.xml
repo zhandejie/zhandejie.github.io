@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhandejie.github.io/"/>
-  <updated>2016-08-15T09:06:00.771Z</updated>
+  <updated>2016-08-16T03:27:56.032Z</updated>
   <id>http://zhandejie.github.io/</id>
   
   <author>
@@ -14,6 +14,69 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VIM练习（一）</title>
+    <link href="http://zhandejie.github.io/2016/08/16/VIM%E7%BB%83%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://zhandejie.github.io/2016/08/16/VIM练习（一）/</id>
+    <published>2016-08-16T01:21:31.000Z</published>
+    <updated>2016-08-16T03:27:56.032Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<p>【头伏饺子，二伏面，三伏烙饼炒鸡蛋】<br>第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是<strong>能飞</strong></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>没什么好说的，度娘一下，这里贴上我下载的版本：<br><a href="&quot;ftp://ftp.vim.org/pub/vim/pc/gvim74-1024.exe&quot;">ftp://ftp.vim.org/pub/vim/pc/gvim74-1024.exe</a><br>下载成功后，一路next安装即可</p>
+<h1 id="初识配置文件"><a href="#初识配置文件" class="headerlink" title="初识配置文件"></a>初识配置文件</h1><p>我的系统是windows，VIM安装在<code>C:\Program Files (x86)\Vim</code>路径下，<code>_vimrc</code>就是VIM的全局配置文件了。<br>打开后是下面这样子的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">set nocompatible</div><div class="line">source $VIMRUNTIME/vimrc_example.vim</div><div class="line">source $VIMRUNTIME/mswin.vim</div><div class="line">behave mswin</div><div class="line"></div><div class="line">set diffexpr=MyDiff()</div><div class="line">function MyDiff()</div><div class="line">  let opt = &apos;-a --binary &apos;</div><div class="line">  if &amp;diffopt =~ &apos;icase&apos; | let opt = opt . &apos;-i &apos; | endif</div><div class="line">  if &amp;diffopt =~ &apos;iwhite&apos; | let opt = opt . &apos;-b &apos; | endif</div><div class="line">  let arg1 = v:fname_in</div><div class="line">  if arg1 =~ &apos; &apos; | let arg1 = &apos;&quot;&apos; . arg1 . &apos;&quot;&apos; | endif</div><div class="line">  let arg2 = v:fname_new</div><div class="line">  if arg2 =~ &apos; &apos; | let arg2 = &apos;&quot;&apos; . arg2 . &apos;&quot;&apos; | endif</div><div class="line">  let arg3 = v:fname_out</div><div class="line">  if arg3 =~ &apos; &apos; | let arg3 = &apos;&quot;&apos; . arg3 . &apos;&quot;&apos; | endif</div><div class="line">  if $VIMRUNTIME =~ &apos; &apos;</div><div class="line">    if &amp;sh =~ &apos;\&lt;cmd&apos;</div><div class="line">      if empty(&amp;shellxquote)</div><div class="line">        let l:shxq_sav = &apos;&apos;</div><div class="line">        set shellxquote&amp;</div><div class="line">      endif</div><div class="line">      let cmd = &apos;&quot;&apos; . $VIMRUNTIME . &apos;\diff&quot;&apos;</div><div class="line">    else</div><div class="line">      let cmd = substitute($VIMRUNTIME, &apos; &apos;, &apos;&quot; &apos;, &apos;&apos;) . &apos;\diff&quot;&apos;</div><div class="line">    endif</div><div class="line">  else</div><div class="line">    let cmd = $VIMRUNTIME . &apos;\diff&apos;</div><div class="line">  endif</div><div class="line">  silent execute &apos;!&apos; . cmd . &apos; &apos; . opt . arg1 . &apos; &apos; . arg2 . &apos; &gt; &apos; . arg3</div><div class="line">  if exists(&apos;l:shxq_sav&apos;)</div><div class="line">    let &amp;shellxquote=l:shxq_sav</div><div class="line">  endif</div><div class="line">endfunction</div></pre></td></tr></table></figure></p>
+<p>本能告诉我，这是一段很NB的代码，鉴于目的是使用VIM来编辑博文，所以向下一步进行。</p>
+<h1 id="插件包管理"><a href="#插件包管理" class="headerlink" title="插件包管理"></a>插件包管理</h1><p>由于是使用hexo搭建的博客，且默认新建文档都是Markdown格式的，所以就想着使用VIM扩展一个Markdown插件来进行编写，同时可以学习VIM/Markdown，挺划算的。在安装之前，凭借菜鸟的多年“菜鸟”经验，我应该先装一个管理插件的插件，随手一搜，发现了Vundle,二话不说，下载安装（按照官网提供的方式<code>git clone https://github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim</code>,中间有个小插曲，windows开启了UAC控制，所以命令行要以管理员身份运行），一气呵成，附下地址 <a href="&quot;https://github.com/VundleVim/Vundle.vim&quot;">https://github.com/VundleVim/Vundle.vim</a></p>
+<ul>
+<li>修改配置文件<br>采用最小化改动原则，在原有配置文件基础之上，按照官方的配置进行增量添加，主要添加以下几行：<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">filetype</span> off		<span class="comment">" 必须</span></div><div class="line"><span class="keyword">set</span> rtp+=$VIM/vimfiles/bundle/vundle <span class="comment">" 设置包括 vundle 和初始化相关的 runtime path</span></div><div class="line"><span class="keyword">call</span> vundle#begin(<span class="string">'$VIM/vimfiles/bundle/'</span>) <span class="comment">" 指定一个 vundle 安装插件的路径</span></div><div class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span><span class="comment">" 让 vundle 管理插件版本 必须</span></div><div class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" 必须</span></div><div class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" 必须 加载vim自带和插件相应的语法和文件类型相关脚本</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>至此就配置好了，在VIM中输入<code>:PluginInstall</code>即可安装插件，噢，忘了说最重要的部分：<strong>所有的插件配置信息需要填写在<code>call vundle#begin</code>和<code>call vundle#end()</code>之间</strong></p>
+<h1 id="VIM-Markdown"><a href="#VIM-Markdown" class="headerlink" title="VIM + Markdown"></a>VIM + Markdown</h1><p>在上述配置好后，终于可以要进入正题了，按照崇拜已久的大神<a href="&quot;http://stormzhang.com/&quot;">stormzhang</a>的一篇文章<a href="&quot;http://stormzhang.com/github/2016/07/28/learn-github-from-zero7/&quot;">如何发现优秀的开源项目？</a>,在github中输入<code>vim markdown</code>并按照<code>most star</code>进行排序，不用多说，就用第一个了！<br><img src="&quot;http://obzf18hto.bkt.clouddn.com/github-vim-markdown-star.png&quot;" alt=""></p>
+<p>安装完毕后</p>
+<h1 id="参考资料及版权声明"><a href="#参考资料及版权声明" class="headerlink" title="参考资料及版权声明"></a>参考资料及版权声明</h1><p><a rel="external" href="http://creativecommons.org/license/by-nc-nd/3.0/cn/" target="_blank"><br><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommonts.org/l/by-nc/nd/3.0/cn/88x31.png"><br></a><br><br>本作品采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn" target="_blank">知识共享署名-非商业性使用-禁止演绎 3.0 中国大陆许可协议</a>进行许可。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;【头伏饺子，二伏面，三伏烙饼炒鸡蛋】&lt;br&gt;第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是&lt;strong&gt;能飞&lt;/strong&gt;
+    
+    </summary>
+    
+      <category term="学习指南" scheme="http://zhandejie.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
+    
+    
+      <category term="vim" scheme="http://zhandejie.github.io/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux/Unix设计思想学习（一）</title>
+    <link href="http://zhandejie.github.io/2016/08/16/Linux-Unix%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://zhandejie.github.io/2016/08/16/Linux-Unix设计思想学习（一）/</id>
+    <published>2016-08-16T00:41:26.000Z</published>
+    <updated>2016-08-16T01:10:30.271Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<h1 id="小即是美"><a href="#小即是美" class="headerlink" title="小即是美"></a>小即是美</h1><h1 id="尽快建立原型"><a href="#尽快建立原型" class="headerlink" title="尽快建立原型"></a>尽快建立原型</h1><p>花少量时间规划应用，然后创建原型，进行代码编写。</p>
+<h1 id="参考资料及版权声明"><a href="#参考资料及版权声明" class="headerlink" title="参考资料及版权声明"></a>参考资料及版权声明</h1><p><a rel="external" href="http://creativecommons.org/license/by-nc-nd/3.0/cn/" target="_blank"><br><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommonts.org/l/by-nc/nd/3.0/cn/88x31.png"><br></a><br><br>本作品采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn" target="_blank">知识共享署名-非商业性使用-禁止演绎 3.0 中国大陆许可协议</a>进行许可。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;小即是美&quot;&gt;&lt;a href=&quot;#小即是美&quot; class=&quot;headerlink&quot; title=&quot;小即是美&quot;&gt;&lt;/a&gt;小即是美&lt;/h1&gt;&lt;h1 id=&quot;尽快建立原型&quot;&gt;&lt;a href=&quot;#尽快建立原型&quot; class=&quot;header
+    
+    </summary>
+    
+      <category term="学习指南" scheme="http://zhandejie.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
+    
+    
+      <category term="Linux" scheme="http://zhandejie.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>使用hexo搭建个人博客</title>
