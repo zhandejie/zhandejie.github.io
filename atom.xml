@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhandejie.github.io/"/>
-  <updated>2016-08-16T07:30:43.468Z</updated>
+  <updated>2016-08-16T07:45:42.612Z</updated>
   <id>http://zhandejie.github.io/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://zhandejie.github.io/2016/08/16/VIM%E7%BB%83%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://zhandejie.github.io/2016/08/16/VIM练习（一）/</id>
     <published>2016-08-16T01:21:31.000Z</published>
-    <updated>2016-08-16T07:30:43.468Z</updated>
+    <updated>2016-08-16T07:45:42.612Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a>
-<p>第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是 <strong>能飞</strong></p>
+    <content type="html"><![CDATA[<p>第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是 <strong>能飞</strong></p>
+<a id="more"></a>
 <h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>没什么好说的，度娘一下，这里贴上我下载的版本：<br><a href="&quot;ftp://ftp.vim.org/pub/vim/pc/gvim74-1024.exe&quot;">ftp://ftp.vim.org/pub/vim/pc/gvim74-1024.exe</a><br>下载成功后，一路next安装即可</p>
 <h1 id="初识配置文件"><a href="#初识配置文件" class="headerlink" title="初识配置文件"></a>初识配置文件</h1><p>我的系统是windows，VIM安装在<code>C:\Program Files (x86)\Vim</code>路径下，<code>_vimrc</code>就是VIM的全局配置文件了。<br>打开后是下面这样子的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">set nocompatible</div><div class="line">source $VIMRUNTIME/vimrc_example.vim</div><div class="line">source $VIMRUNTIME/mswin.vim</div><div class="line">behave mswin</div><div class="line"></div><div class="line">set diffexpr=MyDiff()</div><div class="line">function MyDiff()</div><div class="line">  let opt = &apos;-a --binary &apos;</div><div class="line">  if &amp;diffopt =~ &apos;icase&apos; | let opt = opt . &apos;-i &apos; | endif</div><div class="line">  if &amp;diffopt =~ &apos;iwhite&apos; | let opt = opt . &apos;-b &apos; | endif</div><div class="line">  let arg1 = v:fname_in</div><div class="line">  if arg1 =~ &apos; &apos; | let arg1 = &apos;&quot;&apos; . arg1 . &apos;&quot;&apos; | endif</div><div class="line">  let arg2 = v:fname_new</div><div class="line">  if arg2 =~ &apos; &apos; | let arg2 = &apos;&quot;&apos; . arg2 . &apos;&quot;&apos; | endif</div><div class="line">  let arg3 = v:fname_out</div><div class="line">  if arg3 =~ &apos; &apos; | let arg3 = &apos;&quot;&apos; . arg3 . &apos;&quot;&apos; | endif</div><div class="line">  if $VIMRUNTIME =~ &apos; &apos;</div><div class="line">    if &amp;sh =~ &apos;\&lt;cmd&apos;</div><div class="line">      if empty(&amp;shellxquote)</div><div class="line">        let l:shxq_sav = &apos;&apos;</div><div class="line">        set shellxquote&amp;</div><div class="line">      endif</div><div class="line">      let cmd = &apos;&quot;&apos; . $VIMRUNTIME . &apos;\diff&quot;&apos;</div><div class="line">    else</div><div class="line">      let cmd = substitute($VIMRUNTIME, &apos; &apos;, &apos;&quot; &apos;, &apos;&apos;) . &apos;\diff&quot;&apos;</div><div class="line">    endif</div><div class="line">  else</div><div class="line">    let cmd = $VIMRUNTIME . &apos;\diff&apos;</div><div class="line">  endif</div><div class="line">  silent execute &apos;!&apos; . cmd . &apos; &apos; . opt . arg1 . &apos; &apos; . arg2 . &apos; &gt; &apos; . arg3</div><div class="line">  if exists(&apos;l:shxq_sav&apos;)</div><div class="line">    let &amp;shellxquote=l:shxq_sav</div><div class="line">  endif</div><div class="line">endfunction</div></pre></td></tr></table></figure></p>
 <p>本能告诉我，这是一段很NB的代码，鉴于目的是使用VIM来编辑博文，所以向下一步进行。</p>
@@ -55,9 +55,7 @@
     
     <summary type="html">
     
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是 &lt;strong&gt;能飞&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;下载&quot;&gt;&lt;a h
+      &lt;p&gt;第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是 &lt;strong&gt;能飞&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
@@ -65,6 +63,8 @@
     
     
       <category term="vim" scheme="http://zhandejie.github.io/tags/vim/"/>
+    
+      <category term="markdown" scheme="http://zhandejie.github.io/tags/markdown/"/>
     
   </entry>
   

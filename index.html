@@ -343,38 +343,12 @@
 
       
         
-          
-            <a id="more"></a>
-<p>第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是 <strong>能飞</strong></p>
-<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>没什么好说的，度娘一下，这里贴上我下载的版本：<br><a href="&quot;ftp://ftp.vim.org/pub/vim/pc/gvim74-1024.exe&quot;">ftp://ftp.vim.org/pub/vim/pc/gvim74-1024.exe</a><br>下载成功后，一路next安装即可</p>
-<h1 id="初识配置文件"><a href="#初识配置文件" class="headerlink" title="初识配置文件"></a>初识配置文件</h1><p>我的系统是windows，VIM安装在<code>C:\Program Files (x86)\Vim</code>路径下，<code>_vimrc</code>就是VIM的全局配置文件了。<br>打开后是下面这样子的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">set nocompatible</div><div class="line">source $VIMRUNTIME/vimrc_example.vim</div><div class="line">source $VIMRUNTIME/mswin.vim</div><div class="line">behave mswin</div><div class="line"></div><div class="line">set diffexpr=MyDiff()</div><div class="line">function MyDiff()</div><div class="line">  let opt = &apos;-a --binary &apos;</div><div class="line">  if &amp;diffopt =~ &apos;icase&apos; | let opt = opt . &apos;-i &apos; | endif</div><div class="line">  if &amp;diffopt =~ &apos;iwhite&apos; | let opt = opt . &apos;-b &apos; | endif</div><div class="line">  let arg1 = v:fname_in</div><div class="line">  if arg1 =~ &apos; &apos; | let arg1 = &apos;&quot;&apos; . arg1 . &apos;&quot;&apos; | endif</div><div class="line">  let arg2 = v:fname_new</div><div class="line">  if arg2 =~ &apos; &apos; | let arg2 = &apos;&quot;&apos; . arg2 . &apos;&quot;&apos; | endif</div><div class="line">  let arg3 = v:fname_out</div><div class="line">  if arg3 =~ &apos; &apos; | let arg3 = &apos;&quot;&apos; . arg3 . &apos;&quot;&apos; | endif</div><div class="line">  if $VIMRUNTIME =~ &apos; &apos;</div><div class="line">    if &amp;sh =~ &apos;\&lt;cmd&apos;</div><div class="line">      if empty(&amp;shellxquote)</div><div class="line">        let l:shxq_sav = &apos;&apos;</div><div class="line">        set shellxquote&amp;</div><div class="line">      endif</div><div class="line">      let cmd = &apos;&quot;&apos; . $VIMRUNTIME . &apos;\diff&quot;&apos;</div><div class="line">    else</div><div class="line">      let cmd = substitute($VIMRUNTIME, &apos; &apos;, &apos;&quot; &apos;, &apos;&apos;) . &apos;\diff&quot;&apos;</div><div class="line">    endif</div><div class="line">  else</div><div class="line">    let cmd = $VIMRUNTIME . &apos;\diff&apos;</div><div class="line">  endif</div><div class="line">  silent execute &apos;!&apos; . cmd . &apos; &apos; . opt . arg1 . &apos; &apos; . arg2 . &apos; &gt; &apos; . arg3</div><div class="line">  if exists(&apos;l:shxq_sav&apos;)</div><div class="line">    let &amp;shellxquote=l:shxq_sav</div><div class="line">  endif</div><div class="line">endfunction</div></pre></td></tr></table></figure></p>
-<p>本能告诉我，这是一段很NB的代码，鉴于目的是使用VIM来编辑博文，所以向下一步进行。</p>
-<h1 id="插件包管理"><a href="#插件包管理" class="headerlink" title="插件包管理"></a>插件包管理</h1><p>由于是使用hexo搭建的博客，且默认新建文档都是Markdown格式的，所以就想着使用VIM扩展一个Markdown插件来进行编写，同时可以学习VIM/Markdown，挺划算的。在安装之前，凭借菜鸟的多年“菜鸟”经验，我应该先装一个管理插件的插件，随手一搜，发现了Vundle,二话不说，下载安装（按照官网提供的方式<code>git clone https://github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim</code>,中间有个小插曲，windows开启了UAC控制，所以命令行要以管理员身份运行），一气呵成，附下地址 <a href="&quot;https://github.com/VundleVim/Vundle.vim&quot;">https://github.com/VundleVim/Vundle.vim</a></p>
-<ul>
-<li>修改配置文件<br>采用最小化改动原则，在原有配置文件基础之上，按照官方的配置进行增量添加，主要添加以下几行：<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">filetype</span> off		<span class="comment">" 必须</span></div><div class="line"><span class="keyword">set</span> rtp+=$VIM/vimfiles/bundle/vundle <span class="comment">" 设置包括 vundle 和初始化相关的 runtime path</span></div><div class="line"><span class="keyword">call</span> vundle#begin(<span class="string">'$VIM/vimfiles/bundle/'</span>) <span class="comment">" 指定一个 vundle 安装插件的路径</span></div><div class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span><span class="comment">" 让 vundle 管理插件版本 必须</span></div><div class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" 必须</span></div><div class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" 必须 加载vim自带和插件相应的语法和文件类型相关脚本</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>至此就配置好了，在VIM中输入<code>:PluginInstall</code>即可安装插件，噢，忘了说最重要的部分：<strong>所有的插件配置信息需要填写在<code>call vundle#begin</code>和<code>call vundle#end()</code>之间</strong></p>
-<h1 id="VIM-Markdown"><a href="#VIM-Markdown" class="headerlink" title="VIM + Markdown"></a>VIM + Markdown</h1><p>在上述配置好后，终于可以要进入正题了，按照崇拜已久的大神<a href="http://stormzhang.com/" target="_blank" rel="external">stormzhang</a>的一篇文章<a href="http://stormzhang.com/github/2016/07/28/learn-github-from-zero7/" target="_blank" rel="external">如何发现优秀的开源项目？</a>,在github中输入<code>vim markdown</code>并按照<code>most star</code>进行排序，不用多说，就用第一个了！<br><img src="http://obzf18hto.bkt.clouddn.com/github-vim-markdown-star.png" alt=""></p>
-<p>由于有了Vundle（感谢作者）这个利器，安装插件就容易多了，在配置文件中增加如下代码：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'godlygeek/tabular'</span>		<span class="comment">" 安装markdown必须先装tabular</span></div><div class="line">Plugin <span class="string">'plasticboy/vim-markdown'</span>	<span class="comment">" mardown 插件</span></div></pre></td></tr></table></figure></p>
-<p>打开VIM执行命令<code>:PluginInstall</code>,然后看网速，等待就好了，过程很快的。<br>安装完毕后，打开<code>.md</code>文件后就会有相应的语法高亮哦~<br><img src="http://obzf18hto.bkt.clouddn.com/markdown-syntax-example.png" alt=""></p>
-<h1 id="Markdown-实时预览"><a href="#Markdown-实时预览" class="headerlink" title="Markdown 实时预览"></a>Markdown 实时预览</h1><p>成功运行后，其实自己的第一真实反应是</p>
-<blockquote>
-<p>我要原谅自己的无知，毕竟我是一只菜鸟~</p>
-</blockquote>
-<p>因为自己天真的以为安装完插件就可以做到实时预览博文了，下面是我预想的样子：<br><img src="http://obzf18hto.bkt.clouddn.com/markdown-multi-window.png" alt=""><br>既然没有达到理想的状态，就继续gihub</p>
-<blockquote>
-<p>VIM markdown preview</p>
-</blockquote>
-<p>这回没有选择<code>star</code>排名第一的（因为第一的不支持<code>WINDOWS</code>），这回选择了<br><a href="https://github.com/iamcco/markdown-preview.vim" target="_blank" rel="external">https://github.com/iamcco/markdown-preview.vim</a></p>
-<ul>
-<li>安装<br>依旧是在配置文件中添加代码（再一次感谢Vundle的作者）:<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'iamcco/markdown-preview.vim'</span>	<span class="comment">"markdown 实时预览插件</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>执行命令 <code>:PluginInstall</code><br>安装完毕进行简单的配置如下：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="variable">g:mkdp_path_to_chrome</span> = <span class="string">'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'</span></div><div class="line"><span class="comment">" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:mkdp_auto_start</span> = <span class="number">0</span></div><div class="line"><span class="comment">" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开</span></div><div class="line"><span class="comment">" markdown 文件的时候打开一次</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:mkdp_auto_open</span> = <span class="number">0</span></div><div class="line"><span class="comment">" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预</span></div><div class="line"><span class="comment">" 览窗口</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:mkdp_auto_close</span> = <span class="number">1</span></div><div class="line"><span class="comment">" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不</span></div><div class="line"><span class="comment">" 自动关闭预览窗口</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:mkdp_refresh_slow</span> = <span class="number">0</span></div><div class="line"><span class="comment">" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时</span></div><div class="line"><span class="comment">" 更新预览</span></div></pre></td></tr></table></figure></p>
-<p>在VIM中输入命令 <code>:MarkdownPreview</code> 即可，支持实时预览哦~<br>好了，终于实现我想要的了，贴张图：<br><img src="http://obzf18hto.bkt.clouddn.com/markdow-realtime-preview-ok.png" alt=""></p>
-
-          
+          <p>第2次安装VIM，第1次学会了一些简单的命令，止步于不常用，这一次趁着要写博客，决定使用VIM来进行编辑工作。作为一个小菜鸟，不要求能飞多高，最重要的当下是 <strong>能飞</strong></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/16/VIM练习（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -719,7 +693,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
