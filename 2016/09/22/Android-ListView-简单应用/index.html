@@ -90,10 +90,7 @@
 
 adapter 适配器  连接数据与UI的适配器
 layout 布局文件  界面显示
-bean    数据的实体类  实体数据信息
-
-先来一张成品图：（无图无真相嘛）
-自定义数据的实体类这个其实不用过多的描述了，就是你要显示哪些数据，就事先定义好，就ok12345">
+bean    数据的实体类  实体数据信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android ListView 简单应用">
 <meta property="og:url" content="http://zhandejie.github.io/2016/09/22/Android-ListView-简单应用/index.html">
@@ -102,22 +99,16 @@ bean    数据的实体类  实体数据信息
 
 adapter 适配器  连接数据与UI的适配器
 layout 布局文件  界面显示
-bean    数据的实体类  实体数据信息
-
-先来一张成品图：（无图无真相嘛）
-自定义数据的实体类这个其实不用过多的描述了，就是你要显示哪些数据，就事先定义好，就ok12345">
+bean    数据的实体类  实体数据信息">
 <meta property="og:image" content="http://obzf18hto.bkt.clouddn.com/listview%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B1.png">
-<meta property="og:updated_time" content="2016-09-22T08:44:41.873Z">
+<meta property="og:updated_time" content="2016-09-22T08:47:13.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android ListView 简单应用">
 <meta name="twitter:description" content="ListView 的结构简单剖析1listView.setAdapter(&quot;自定义Adapter--&amp;gt;myAdapter&quot;);
 
 adapter 适配器  连接数据与UI的适配器
 layout 布局文件  界面显示
-bean    数据的实体类  实体数据信息
-
-先来一张成品图：（无图无真相嘛）
-自定义数据的实体类这个其实不用过多的描述了，就是你要显示哪些数据，就事先定义好，就ok12345">
+bean    数据的实体类  实体数据信息">
 <meta name="twitter:image" content="http://obzf18hto.bkt.clouddn.com/listview%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B1.png">
 
 
@@ -367,6 +358,7 @@ bean    数据的实体类  实体数据信息
 <li>layout 布局文件<br>  界面显示</li>
 <li>bean    数据的实体类<br>  实体数据信息</li>
 </ul>
+<a id="more"></a>
 <p>先来一张成品图：（无图无真相嘛）<br><img src="http://obzf18hto.bkt.clouddn.com/listview%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B1.png" alt=""></p>
 <h2 id="自定义数据的实体类"><a href="#自定义数据的实体类" class="headerlink" title="自定义数据的实体类"></a>自定义数据的实体类</h2><p>这个其实不用过多的描述了，就是你要显示哪些数据，就事先定义好，就ok<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CardDealEntity</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTransdesc</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> transdesc;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTransdesc</span><span class="params">(String transdesc)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.transdesc = transdesc;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTranstime</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> transtime;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTranstime</span><span class="params">(String transtime)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.transtime = transtime;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTranstype</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> transtype;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTranstype</span><span class="params">(String transtype)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.transtype = transtype;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTransamt</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> transamt;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTransamt</span><span class="params">(String transamt)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.transamt = transamt;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**交易描述**/</span></div><div class="line">    <span class="keyword">private</span> String transdesc;</div><div class="line"></div><div class="line">    <span class="comment">/**交易时间**/</span></div><div class="line">    <span class="keyword">private</span> String transtime;</div><div class="line"></div><div class="line">    <span class="comment">/**交易类型**/</span></div><div class="line">    <span class="keyword">private</span> String transtype;</div><div class="line"></div><div class="line">    <span class="comment">/**交易金额**/</span></div><div class="line">    <span class="keyword">private</span> String transamt;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="自定义布局"><a href="#自定义布局" class="headerlink" title="自定义布局"></a>自定义布局</h2><p>这个就比较重要了，想要将<code>ListView</code>显示成什么样，就全靠自定义的布局好坏与否了<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">    android:layout_width="match_parent"</div><div class="line">    android:layout_height="match_parent"</div><div class="line">    android:background="@drawable/ic_backgroud"</div><div class="line">    android:orientation="vertical" &gt;</div><div class="line"></div><div class="line">    &lt;ListView</div><div class="line">        android:id="@+id/lv_card_deal_query_list"</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="match_parent"</div><div class="line">        android:cacheColorHint="@android:color/transparent"</div><div class="line">        android:divider="@null"</div><div class="line">        android:listSelector="@android:color/transparent"</div><div class="line">        android:scrollbars="none"</div><div class="line">        android:visibility="gone" /&gt;</div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:id="@+id/tv_card_deal_query_null"</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="match_parent"</div><div class="line">        android:gravity="center"</div><div class="line">        android:text="暂无交易记录"</div><div class="line">        android:textColor="#ba8f54"</div><div class="line">        android:textSize="18sp"</div><div class="line">        android:visibility="gone" /&gt;</div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure></p>
